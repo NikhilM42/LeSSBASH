@@ -1,0 +1,99 @@
+#!/usr/bin/env bash
+
+var1="I'm variable 1"
+
+greet(){
+    echo "Hello World! My name is" $1 
+    echo "This is the" $FUNCNAME "function"
+
+    declare -i i=1
+    for f in $@
+    do
+        echo "$i: $f"
+        (( i += 1 ))
+    done
+
+    var2="I'm variable 2"
+    local var3
+    var3="I'm variable 3"
+
+    echo "Print local variable in local context" $var3
+}
+
+echo "While loop"
+declare -i n=0
+while (( n < 10 ))
+do
+    echo "n:$n"
+    ((n++))
+done
+
+echo -e "\nUntil Loop"
+
+declare -i m=0
+until (( m == 10 ))
+do
+    echo "m:$m"
+    ((m++))
+done
+
+echo -e "\nFor loop"
+
+for i in {1..100}
+do
+    echo $i
+done
+
+echo -e "\nFor loop"
+
+for (( i=1; i<=100; i++))
+do
+    echo $i
+done
+
+echo -e "\nFor loop"
+
+declare -a fruits=("apple" "banana" "pear")
+
+for i in ${fruits[@]}
+do
+    echo $i
+done
+
+echo -e "\nFor loop"
+
+for i in $(ls)
+do
+    echo $i
+done
+
+echo -e "\nCase Statement"
+
+animal="bird"
+case $animal in
+    cat) echo "Feline";;
+    dog|puppy) echo "Canine";;
+    *) echo "No match!"
+esac
+
+echo
+greet Nikhil $(ls /)
+
+echo -e "\nGlobal and local Variables"
+echo "Global variable" $var1
+echo "Another Global variable" $var2
+echo "Attempting to print local variable from global context" $var3
+
+echo -e "\nWriting to file"
+
+for i in {1..5}
+do
+    echo "This is line $i" >> textfile.txt
+done
+
+echo -e "\nReeading from file"
+
+while read f
+do
+    echo "The line says: " $f
+done < textfile.txt

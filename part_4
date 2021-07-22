@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+echo "The $0 script got the argument $1"
+
+while getopts u:p:ab option;
+do
+    case $option in
+        u) user=$OPTARG;;
+        p) pass=$OPTARG;;
+        a) echo "Got the A flag";;
+        b) echo "Got the B flag";;
+        ?) echo "Unknown argument"
+    esac
+done
+
+echo "user: $user / pass: $pass"
+
+echo "Another name?"
+read name
+
+echo "What is your password?"
+read -s pass
+read -p "Whats your favourite animal? " animal
+
+echo "name: $name , pass: $pass , animal: $animal"
+
+echo "Which animal"
+
+select animal in "cat" "dog" "bird" "fish"
+do
+    echo "You selected $animal!"
+    break
+done
+

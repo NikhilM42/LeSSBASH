@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+declare -a titlelist
+titlelist=("Kernel-Name" "Node-Name" "Kernel-Release" "Kernel-Version" "Machine" "Processor" "Hardware-Platform" "OS")
+declare -a infolist
+
+infolist=( $(uname -s) $(uname -n) $(uname -r) $(echo $(uname -v) | tr [:space:] '-') $(uname -m) $(uname -p) $(uname -i) $(uname -o) )
+
+for val in {0..7}; do
+    printf "%20s: %-30s\n" "${titlelist[${val}]}" "${infolist[${val}]}"
+done

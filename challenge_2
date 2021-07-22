@@ -1,0 +1,12 @@
+
+declare -i dice=($RANDOM%6+1)
+
+case $dice in
+    1) echo "Uno";;
+    2) echo "Deux";;
+    3) echo "Tres";;
+    4) echo "Four";;
+    5) echo "Cinq";;
+    6) echo "Six";;
+    *) echo "What kind of dice are you rolling?"
+esac
