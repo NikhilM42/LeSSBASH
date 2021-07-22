@@ -31,4 +31,3 @@ do
     echo "You selected $animal!"
     break
 done
-
