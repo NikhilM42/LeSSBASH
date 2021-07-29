@@ -1,28 +1,28 @@
 #!/usr/bin/env bash
 
-declare -a rollfortune=["The Fool" "The Magician" "The High Priestess" "The Empress" "The Emperor" "The Hierophant" "The Lovers" "The Chariot" "Justice † or Strength ‡" "The Hermit" "Wheel of Fortune" "Strength † or Justice ‡" "The Hanged Man" "Death" "Temperance" "The Devil" "The Tower" "The Star" "The Moon" "The Sun" "Judgement" "The World"]
-declare -a deck=["The Fool" "The Magician" "The High Priestess" "The Empress" "The Emperor" "The Hierophant" "The Lovers" "The Chariot" "Justice † or Strength ‡" "The Hermit" "Wheel of Fortune" "Strength † or Justice ‡" "The Hanged Man" "Death" "Temperance" "The Devil" "The Tower" "The Star" "The Moon" "The Sun" "Judgement" "The World"]
+declare -a rollfortune=("The Fool" "The Magician" "The High Priestess" "The Empress" "The Emperor" "The Hierophant" "The Lovers" "The Chariot" "Justice † or Strength ‡" "The Hermit" "Wheel of Fortune" "Strength † or Justice ‡" "The Hanged Man" "Death" "Temperance" "The Devil" "The Tower" "The Star" "The Moon" "The Sun" "Judgement" "The World")
+declare -a deck=("The Fool" "The Magician" "The High Priestess" "The Empress" "The Emperor" "The Hierophant" "The Lovers" "The Chariot" "Justice † or Strength ‡" "The Hermit" "Wheel of Fortune" "Strength † or Justice ‡" "The Hanged Man" "Death" "Temperance" "The Devil" "The Tower" "The Star" "The Moon" "The Sun" "Judgement" "The World")
 
 read -p "Hello $2 would you like your fortune told? [(Yes)/No]" choice
 
-while [$choice != "Yes" && $choice != "No"]
-do
+if [ -z $choice ]
+then
     choice="Yes"
-done
+fi
 
-if [$choice -eq "Yes"]
-do
-    while [$choice != "dice" && $choice != "tarot"]
+if [ "$choice" == "Yes" ]
+then
+    while [ "$choice" != "dice" ] && [ "$choice" != "tarot" ]
     do
-        read -p "Roll the [dice] or would you like a [tarot] card reading?" style
+        read -p "Roll the [dice] or would you like a [tarot] card reading?" choice
     done
     
     declare -i roll=-1
     declare -i card=-1
 
     case $choice in
-        dice) roll=($RANDOM%6+1);echo {$rollfortune[$dice]};break;;
-        tarot) card=($RANDOM%72);echo {$deck[$dice]};break;;
+        dice) roll=($RANDOM%6+1);echo "${rollfortune[$roll]}";;
+        tarot) card=($RANDOM%72);echo "${deck[$call]}";;
     esac
 fi
 
